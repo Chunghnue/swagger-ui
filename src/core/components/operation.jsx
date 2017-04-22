@@ -149,7 +149,7 @@ export default class Operation extends React.Component {
     let shown = this.isShown()
     let onChangeKey = [ path, method ] // Used to add values to _this_ operation ( indexed by path and method )
     return (
-        <Element name={id} className={deprecated ? "opblock opblock-deprecated" : shown ? `opblock opblock-${method} is-open` : `opblock opblock-${method}`} id={isShownKey} >
+        <Element name={id} className={deprecated ? "opblock opblock-deprecated" : shown ? `opblock opblock-${method} is-open` : `opblock opblock-${method}`} >
           <div className={`opblock-summary opblock-summary-${method}`} onClick={this.toggleShown} >
             <span className="opblock-summary-method">{method.toUpperCase()}</span>
             <span className={ deprecated ? "opblock-summary-path__deprecated" : "opblock-summary-path" } >
@@ -173,7 +173,7 @@ export default class Operation extends React.Component {
 
           <Collapse isOpened={true} animated>
           <Row>
-            <Col desktop={8}>
+            <Col desktop={7}>
               <div className="opblock-body">
                 { deprecated && <h4 className="opblock-title_normal"> Warning: Deprecated</h4>}
                 { description &&
@@ -241,7 +241,7 @@ export default class Operation extends React.Component {
               {this.state.executeInProgress ? <div className="loading-container"><div className="loading"></div></div> : null}
               </div>
             </Col>
-            <Col desktop={4}>
+            <Col desktop={5} className="res-col">
               { !responses ? null :
                   <Responses
                     responses={ responses }

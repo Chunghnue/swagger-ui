@@ -121,14 +121,7 @@ export default class ParamBody extends Component {
                                value={ value }/>)
         }
         <div className="body-param-options">
-          {
-            !isExecute ? null
-                       : <div className="body-param-edit">
-                        <Button className={isEditBox ? "btn cancel body-param__example-edit" : "btn edit body-param__example-edit"}
-                                 onClick={this.toggleIsEditBox}>{ isEditBox ? "Cancel" : "Edit"}
-                         </Button>
-                         </div>
-          }
+          
           <label htmlFor="">
             <span>Parameter content type</span>
             <ContentType value={ consumesValue } contentTypes={ consumes } onChange={onChangeConsumes} className="body-param-content-type" />

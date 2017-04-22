@@ -48,16 +48,16 @@ export default class SideBar extends React.Component {
 
               let isShownKey = ["operations-tag", tag]
               let showTag = layoutSelectors.isShown(isShownKey, true)
-              
               return (
-                <li>{tagDescription}
+                <li key={tag}>
+                  <Link href={"#" + tag} to={tag} spy={true} smooth={true} duration={500}>{tag}</Link>
                   <ul>
                     {
                       operations.map(op => {
                         let operation = op.toObject().operation
                         let summary = operation.get("summary")
                         return (
-                          <li><Link href={"#"+op.toObject().id} to={op.toObject().id} spy={true} smooth={true} duration={500} >{ summary }</Link></li>
+                          <li key={op.toObject().id}><Link href={"#"+op.toObject().id} to={op.toObject().id} spy={true} smooth={true} duration={500} >{ summary }</Link></li>
                         )
                       })
                     }

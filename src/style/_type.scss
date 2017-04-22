@@ -1,13 +1,14 @@
 @mixin text_body($color: #3b4151)
 {
-    font-family: 'Open Sans', sans-serif;
+    font-family: Avenir Next,avenir-next-web,Avenir,Helvetica Neue,Hevetica,sans-serif;
+    font-size: 14px;
 
     color: $color;
 }
 
 @mixin text_code($color: #3b4151)
 {
-    font-family: 'Source Code Pro', monospace;
+    font-family: Roboto Mono,Menlo,Monaco,Consolas,Courier New,monospace;
     font-weight: 600;
 
     color: $color;
@@ -15,7 +16,42 @@
 
 @mixin text_headline($color: #3b4151)
 {
-    font-family: 'Titillium Web', sans-serif;
+    font-family: Avenir Next,avenir-next-web,Avenir,Helvetica Neue,Hevetica,sans-serif;
 
     color: $color;
+}
+
+input, select, option
+{
+    font-family: Avenir Next,avenir-next-web,Avenir,Helvetica Neue,Hevetica,sans-serif;
+    font-size: 12px;
+}
+
+ul.side-bar
+{
+    padding-left: 10px;
+
+    ul
+    {
+        padding-left: 10px;
+    }
+}
+
+ul.side-bar li
+{
+    list-style: none;
+    padding-left: 10px;
+}
+
+ul.side-bar li a
+{
+    font-family: Avenir Next,avenir-next-web,Avenir,Helvetica Neue,Hevetica,sans-serif;
+    font-size: 14px;
+    text-decoration-line: none;
+    color: #5c666f;
+}
+
+.side-bar >li >a
+{
+    text-transform: capitalize;
 }
