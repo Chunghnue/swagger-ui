@@ -41,7 +41,7 @@ export default class Operation extends React.Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
-      tryItOutEnabled: true
+      tryItOutEnabled: false
     }
   }
 
@@ -136,8 +136,6 @@ export default class Operation extends React.Component {
     const Collapse = getComponent( "Collapse" )
     const Markdown = getComponent( "Markdown" )
     const Schemes = getComponent( "schemes" )
-    let Row = getComponent("Row")
-    let Col = getComponent("Col")
 
     // Merge in Live Response
     if(response && response.size > 0) {
@@ -171,77 +169,73 @@ export default class Operation extends React.Component {
             }
           </div>
 
-          <Collapse isOpened={true} animated>
-          <Row>
-            <Col desktop={8}>
-              <div className="opblock-body">
-                { deprecated && <h4 className="opblock-title_normal"> Warning: Deprecated</h4>}
-                { description &&
-                  <div className="opblock-description-wrapper">
-                    <div className="opblock-description">
-                      <Markdown options={{html: true, typographer: true, linkify: true, linkTarget: "_blank"}} source={ description } />
-                    </div>
+          <Collapse isOpened={shown} animated>
+            <div className="opblock-body">
+              { deprecated && <h4 className="opblock-title_normal"> Warning: Deprecated</h4>}
+              { description &&
+                <div className="opblock-description-wrapper">
+                  <div className="opblock-description">
+                    <Markdown options={{html: true, typographer: true, linkify: true, linkTarget: "_blank"}} source={ description } />
                   </div>
-                }
-                {
-                  externalDocs && externalDocs.get("url") ?
-                  <div className="opblock-external-docs-wrapper">
-                    <h4 className="opblock-title_normal">Find more details</h4>
-                    <div className="opblock-external-docs">
-                      <span className="opblock-external-docs__description">{ externalDocs.get("description") }</span>
-                      <a className="opblock-external-docs__link" href={ externalDocs.get("url") }>{ externalDocs.get("url") }</a>
-                    </div>
+                </div>
+              }
+              {
+                externalDocs && externalDocs.get("url") ?
+                <div className="opblock-external-docs-wrapper">
+                  <h4 className="opblock-title_normal">Find more details</h4>
+                  <div className="opblock-external-docs">
+                    <span className="opblock-external-docs__description">{ externalDocs.get("description") }</span>
+                    <a className="opblock-external-docs__link" href={ externalDocs.get("url") }>{ externalDocs.get("url") }</a>
+                  </div>
+                </div> : null
+              }
+              <Parameters
+                parameters={parameters}
+                onChangeKey={onChangeKey}
+                onTryoutClick = { this.onTryoutClick }
+                onCancelClick = { this.onCancelClick }
+                tryItOutEnabled = { tryItOutEnabled }
+                allowTryItOut={allowTryItOut}
+
+                fn={fn}
+                getComponent={ getComponent }
+                specActions={ specActions }
+                specSelectors={ specSelectors }
+                pathMethod={ [path, method] }
+              />
+
+              {!tryItOutEnabled || !allowTryItOut ? null : schemes && schemes.size ? <div className="opblock-schemes">
+                    <Schemes schemes={ schemes }
+                             path={ path }
+                             method={ method }
+                             specActions={ specActions }/>
                   </div> : null
-                }
-                <Parameters
-                  parameters={parameters}
-                  onChangeKey={onChangeKey}
-                  onTryoutClick = { this.onTryoutClick }
-                  onCancelClick = { this.onCancelClick }
-                  tryItOutEnabled = { tryItOutEnabled }
-                  allowTryItOut={allowTryItOut}
+              }
 
-                  fn={fn}
-                  getComponent={ getComponent }
-                  specActions={ specActions }
-                  specSelectors={ specSelectors }
-                  pathMethod={ [path, method] }
-                />
+            <div className={(!tryItOutEnabled || !response || !allowTryItOut) ? "execute-wrapper" : "btn-group"}>
+              { !tryItOutEnabled || !allowTryItOut ? null :
 
-                {!tryItOutEnabled || !allowTryItOut ? null : schemes && schemes.size ? <div className="opblock-schemes">
-                      <Schemes schemes={ schemes }
-                              path={ path }
-                              method={ method }
-                              specActions={ specActions }/>
-                    </div> : null
-                }
+                  <Execute
+                    getComponent={getComponent}
+                    operation={ operation }
+                    specActions={ specActions }
+                    specSelectors={ specSelectors }
+                    path={ path }
+                    method={ method }
+                    onExecute={ this.onExecute } />
+              }
 
-              <div className={(!tryItOutEnabled || !response || !allowTryItOut) ? "execute-wrapper" : "btn-group"}>
-                { !tryItOutEnabled || !allowTryItOut ? null :
+              { (!tryItOutEnabled || !response || !allowTryItOut) ? null :
+                  <Clear
+                    onClick={ this.onClearClick }
+                    specActions={ specActions }
+                    path={ path }
+                    method={ method }/>
+              }
+            </div>
 
-                    <Execute
-                      getComponent={getComponent}
-                      operation={ operation }
-                      specActions={ specActions }
-                      specSelectors={ specSelectors }
-                      path={ path }
-                      method={ method }
-                      onExecute={ this.onExecute } />
-                }
+            {this.state.executeInProgress ? <div className="loading-container"><div className="loading"></div></div> : null}
 
-                { (!tryItOutEnabled || !response || !allowTryItOut) ? null :
-                    <Clear
-                      onClick={ this.onClearClick }
-                      specActions={ specActions }
-                      path={ path }
-                      method={ method }/>
-                }
-              </div>
-
-              {this.state.executeInProgress ? <div className="loading-container"><div className="loading"></div></div> : null}
-              </div>
-            </Col>
-            <Col desktop={4}>
               { !responses ? null :
                   <Responses
                     responses={ responses }
@@ -255,9 +249,7 @@ export default class Operation extends React.Component {
                     pathMethod={ [path, method] }
                     fn={fn} />
               }
-              </Col>
-            
-            </Row>
+            </div>
           </Collapse>
         </Element>
     )

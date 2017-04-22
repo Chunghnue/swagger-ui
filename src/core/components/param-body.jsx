@@ -53,7 +53,7 @@ export default class ParamBody extends Component {
     let { specSelectors, pathMethod, param, isExecute, consumesValue="" } = props
     let parameter = specSelectors ? specSelectors.getParameter(pathMethod, param.get("name")) : {}
     let isXml = /xml/i.test(consumesValue)
-    let paramValue = isXml ? parameter.get("value_xml") : parameter.get("value")
+    let paramValue = parameter ? (isXml ? parameter.get("value_xml") : parameter.get("value")) : null
 
     if ( paramValue !== undefined ) {
       let val = !paramValue && !isXml ? "{}" : paramValue
