@@ -30,10 +30,10 @@ Container.propTypes = {
 }
 
 const DEVICES = {
-  "mobile": "",
-  "tablet": "-tablet",
-  "desktop": "-desktop",
-  "large": "-hd"
+  "mobile": "sm-",
+  "tablet": "md-",
+  "desktop": "lg-",
+  "large": "xlg-"
 }
 
 export class Col extends React.Component {
@@ -68,8 +68,8 @@ export class Col extends React.Component {
           continue
         }
 
-        classesAr.push("block" + deviceClass)
-        classesAr.push("col-" + val + deviceClass)
+        // classesAr.push("block" + deviceClass)
+        classesAr.push("col-" + deviceClass + val)
       }
     }
 
@@ -95,7 +95,7 @@ Col.propTypes = {
 export class Row extends React.Component {
 
   render() {
-    return <div {...this.props} className={xclass(this.props.className, "wrapper")} />
+    return <div {...this.props} className={xclass(this.props.className, "row")} />
   }
 
 }

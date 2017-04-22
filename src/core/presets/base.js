@@ -45,6 +45,7 @@ import ModelExample from "core/components/model-example"
 import Model from "core/components/model"
 import Models from "core/components/models"
 import TryItOutButton from "core/components/try-it-out-button"
+import Sidebar from "core/components/side-bar"
 
 import BaseLayout from "core/components/layouts/base"
 
@@ -89,7 +90,8 @@ export default function() {
       model: Model,
       models: Models,
       TryItOutButton,
-      BaseLayout
+      BaseLayout,
+      sidebar: Sidebar
     }
   }
 

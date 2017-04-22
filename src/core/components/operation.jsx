@@ -2,7 +2,9 @@ import React, { PropTypes } from "react"
 import shallowCompare from "react-addons-shallow-compare"
 import { getList } from "core/utils"
 import * as CustomPropTypes from "core/proptypes"
+import Scroll from "react-scroll"
 
+const Element = Scroll.Element
 //import "less/opblock"
 
 export default class Operation extends React.Component {
@@ -111,7 +113,8 @@ export default class Operation extends React.Component {
       specActions,
       specSelectors,
       authActions,
-      authSelectors
+      authSelectors,
+      id
     } = this.props
 
     let summary = operation.get("summary")
@@ -143,9 +146,8 @@ export default class Operation extends React.Component {
     let { tryItOutEnabled } = this.state
     let shown = this.isShown()
     let onChangeKey = [ path, method ] // Used to add values to _this_ operation ( indexed by path and method )
-
     return (
-        <div className={deprecated ? "opblock opblock-deprecated" : shown ? `opblock opblock-${method} is-open` : `opblock opblock-${method}`} id={isShownKey} >
+        <Element name={id} className={deprecated ? "opblock opblock-deprecated" : shown ? `opblock opblock-${method} is-open` : `opblock opblock-${method}`} id={isShownKey} >
           <div className={`opblock-summary opblock-summary-${method}`} onClick={this.toggleShown} >
             <span className="opblock-summary-method">{method.toUpperCase()}</span>
             <span className={ deprecated ? "opblock-summary-path__deprecated" : "opblock-summary-path" } >
@@ -249,7 +251,7 @@ export default class Operation extends React.Component {
               }
             </div>
           </Collapse>
-        </div>
+        </Element>
     )
   }
 

@@ -1,4 +1,5 @@
 import React, { PropTypes } from "react"
+import { StickyContainer, Sticky } from 'react-sticky'
 
 export default class BaseLayout extends React.Component {
 
@@ -25,7 +26,7 @@ export default class BaseLayout extends React.Component {
 
     let Info = getComponent("info")
     let Operations = getComponent("operations", true)
-    let Models = getComponent("models", true)
+    let Sidebar = getComponent("sidebar", true)
     let AuthorizeBtn = getComponent("authorizeBtn", true)
     let Row = getComponent("Row")
     let Col = getComponent("Col")
@@ -40,7 +41,7 @@ export default class BaseLayout extends React.Component {
 
     return (
 
-      <div className='swagger-ui'>
+      <StickyContainer className='swagger-ui'>
           <div>
             <Errors/>
             <Row className="information-container">
@@ -64,17 +65,17 @@ export default class BaseLayout extends React.Component {
             ) : null }
 
             <Row>
-              <Col mobile={12} desktop={12} >
-                <Operations/>
+              <Col mobile={12} desktop={3} >
+              <Sticky>
+                <Sidebar />
+              </Sticky>
               </Col>
-            </Row>
-            <Row>
-              <Col mobile={12} desktop={12} >
-                <Models/>
+              <Col mobile={12} desktop={9} >
+                <Operations />
               </Col>
             </Row>
           </div>
-        </div>
+        </StickyContainer>
       )
   }
 }

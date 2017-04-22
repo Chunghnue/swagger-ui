@@ -606,3 +606,13 @@ body
         opacity: 0;
     }
 }
+
+.side-bar
+{
+    max-height: 100vh;
+    overflow-y: auto;
+
+    .active {
+        font-weight: bold;
+    }
+}
