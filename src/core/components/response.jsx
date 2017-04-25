@@ -71,7 +71,7 @@ export default class Response extends React.Component {
     return (
       <tr className={ "response " + ( className || "") }>
         <td className="col response-col_status">
-          { code }
+          <div><span>{ code }</span></div>
         </td>
         <td className="col response-col_description">
 

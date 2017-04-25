@@ -1,15 +1,16 @@
 select
 {
-    font-size: 14px;
-    font-weight: bold;
+    font-family: Avenir Next,avenir-next-web,Avenir,Helvetica Neue,Hevetica,sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid #41444e;
 
     padding: 5px 40px 5px 10px;
 
-    border: 2px solid #41444e;
     border-radius: 4px;
     background: #f7f7f7 url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAyMCI+ICAgIDxwYXRoIGQ9Ik0xMy40MTggNy44NTljLjI3MS0uMjY4LjcwOS0uMjY4Ljk3OCAwIC4yNy4yNjguMjcyLjcwMSAwIC45NjlsLTMuOTA4IDMuODNjLS4yNy4yNjgtLjcwNy4yNjgtLjk3OSAwbC0zLjkwOC0zLjgzYy0uMjctLjI2Ny0uMjctLjcwMSAwLS45NjkuMjcxLS4yNjguNzA5LS4yNjguOTc4IDBMMTAgMTFsMy40MTgtMy4xNDF6Ii8+PC9zdmc+) right 10px center no-repeat;
     background-size: 20px;
-    box-shadow: 0 1px 2px 0 rgba(0,0,0,.25);
+    // box-shadow: 0 1px 2px 0 rgba(0,0,0,.25);
 
     @include text_headline();
     appearance: none;
@@ -44,12 +45,13 @@ input[type=password],
 input[type=search],
 input[type=email]
 {
+    font-size: 12px;
     min-width: 100px;
     margin: 5px 0;
     padding: 8px 10px;
 
     border: 1px solid #d9d9d9;
-    border-radius: 4px;
+    border-radius: 3px;
     background: #fff;
 
     &.invalid

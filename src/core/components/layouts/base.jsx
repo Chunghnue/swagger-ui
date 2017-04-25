@@ -35,47 +35,47 @@ export default class BaseLayout extends React.Component {
 
     const isSpecEmpty = !specSelectors.specStr()
 
-    if(isSpecEmpty) {
+    if (isSpecEmpty) {
       return <h4>No spec provided.</h4>
     }
 
     return (
 
       <StickyContainer className='swagger-ui'>
-          <div>
-            <Errors/>
-            <Row className="information-container">
-              <Col mobile={12}>
-                { info.count() ? (
-                  <Info info={ info } url={ url } host={ host } basePath={ basePath } externalDocs={externalDocs} getComponent={getComponent}/>
-                ) : null }
+        <div>
+          <Errors />
+          <div className="information-container">
+            <Col mobile={12}>
+              {info.count() ? (
+                <Info info={info} url={url} host={host} basePath={basePath} externalDocs={externalDocs} getComponent={getComponent} />
+              ) : null}
+            </Col>
+          </div>
+          {schemes && schemes.size || securityDefinitions ? (
+            <div className="scheme-container">
+              <Col className="schemes wrapper" mobile={12}>
+                {schemes && schemes.size ? (
+                  <Schemes schemes={schemes} specActions={specActions} />
+                ) : null}
+                {securityDefinitions ? (
+                  <AuthorizeBtn />
+                ) : null}
               </Col>
-            </Row>
-            { schemes && schemes.size || securityDefinitions ? (
-              <div className="scheme-container">
-                <Col className="schemes wrapper" mobile={12}>
-                  { schemes && schemes.size ? (
-                    <Schemes schemes={ schemes } specActions={ specActions } />
-                  ) : null }
-                  { securityDefinitions ? (
-                    <AuthorizeBtn />
-                  ) : null }
-                </Col>
-              </div>
-            ) : null }
+            </div>
+          ) : null}
 
-            <Row>
-              <Col mobile={12} desktop={3} >
+          <Row>
+            <Col mobile={12} desktop={3} >
               <Sticky>
                 <Sidebar />
               </Sticky>
-              </Col>
-              <Col mobile={12} desktop={9} >
-                <Operations />
-              </Col>
-            </Row>
-          </div>
-        </StickyContainer>
-      )
+            </Col>
+            <Col mobile={12} desktop={9} >
+              <Operations />
+            </Col>
+          </Row>
+        </div>
+      </StickyContainer>
+    )
   }
 }

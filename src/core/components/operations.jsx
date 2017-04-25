@@ -39,77 +39,77 @@ export default class Operations extends React.Component {
     let showSummary = layoutSelectors.showSummary()
 
     return (
-        <div>
-          {
-            taggedOps.map( (tagObj, tag) => {
-              let operations = tagObj.get("operations")
-              let tagDescription = tagObj.getIn(["tagDetails", "description"], null)
+      <div className="row">
+        {
+          taggedOps.map((tagObj, tag) => {
+            let operations = tagObj.get("operations")
+            let tagDescription = tagObj.getIn(["tagDetails", "description"], null)
 
-              let isShownKey = ["operations-tag", tag]
-              let showTag = layoutSelectors.isShown(isShownKey, true)
+            let isShownKey = ["operations-tag", tag]
+            let showTag = layoutSelectors.isShown(isShownKey, true)
 
-              return (
-                <Element name={tag} className={showTag ? "opblock-tag-section is-open" : "opblock-tag-section"} key={"operation-" + tag}>
+            return (
+              <Element name={tag} className={showTag ? "opblock-tag-section is-open" : "opblock-tag-section"} key={"operation-" + tag}>
 
-                  <h4 className={!tagDescription ? "opblock-tag no-desc" : "opblock-tag" }>
-                    <span onClick={() => layoutActions.show(isShownKey, !showTag)}>{tag}</span>
+                <h4 className={!tagDescription ? "opblock-tag no-desc" : "opblock-tag"}>
+                  <span onClick={() => layoutActions.show(isShownKey, !showTag)}>{tag}</span>
 
 
-                    { !tagDescription ? null :
-                        <small onClick={() => layoutActions.show(isShownKey, !showTag)} >
-                          { tagDescription }
-                        </small>
-                    }
+                  {!tagDescription ? null :
+                    <small onClick={() => layoutActions.show(isShownKey, !showTag)} >
+                      {tagDescription}
+                    </small>
+                  }
 
-                    
-                  </h4>
 
-                  <Collapse isOpened={true}>
-                    {
-                      operations.map( op => {
+                </h4>
 
-                        const isShownKey = ["operations", op.get("id"), tag]
-                        const path = op.get("path", "")
-                        const method = op.get("method", "")
-                        const jumpToKey = `paths.${path}.${method}`
+                <div>
+                  {
+                    operations.map(op => {
 
-                        const allowTryItOut = specSelectors.allowTryItOutFor(op.get("path"), op.get("method"))
-                        const response = specSelectors.responseFor(op.get("path"), op.get("method"))
-                        const request = specSelectors.requestFor(op.get("path"), op.get("method"))
+                      const isShownKey = ["operations", op.get("id"), tag]
+                      const path = op.get("path", "")
+                      const method = op.get("method", "")
+                      const jumpToKey = `paths.${path}.${method}`
 
-                        return <Operation
-                          {...op.toObject()}
+                      const allowTryItOut = specSelectors.allowTryItOutFor(op.get("path"), op.get("method"))
+                      const response = specSelectors.responseFor(op.get("path"), op.get("method"))
+                      const request = specSelectors.requestFor(op.get("path"), op.get("method"))
 
-                          isShownKey={isShownKey}
-                          jumpToKey={jumpToKey}
-                          showSummary={showSummary}
-                          key={isShownKey}
-                          response={ response }
-                          request={ request }
-                          allowTryItOut={allowTryItOut}
+                      return <Operation
+                        {...op.toObject() }
 
-                          specActions={ specActions }
-                          specSelectors={ specSelectors }
+                        isShownKey={isShownKey}
+                        jumpToKey={jumpToKey}
+                        showSummary={showSummary}
+                        key={isShownKey}
+                        response={response}
+                        request={request}
+                        allowTryItOut={allowTryItOut}
 
-                          layoutActions={ layoutActions }
-                          layoutSelectors={ layoutSelectors }
+                        specActions={specActions}
+                        specSelectors={specSelectors}
 
-                          authActions={ authActions }
-                          authSelectors={ authSelectors }
+                        layoutActions={layoutActions}
+                        layoutSelectors={layoutSelectors}
 
-                          getComponent={ getComponent }
-                          fn={fn}
-                        />
-                      }).toArray()
-                    }
-                  </Collapse>
-                </Element>
-                )
-            }).toArray()
-          }
+                        authActions={authActions}
+                        authSelectors={authSelectors}
 
-          { taggedOps.size < 1 ? <h3> No operations defined in spec! </h3> : null }
-        </div>
+                        getComponent={getComponent}
+                        fn={fn}
+                      />
+                    }).toArray()
+                  }
+                </div>
+              </Element>
+            )
+          }).toArray()
+        }
+
+        {taggedOps.size < 1 ? <h3> No operations defined in spec! </h3> : null}
+      </div>
     )
   }
 

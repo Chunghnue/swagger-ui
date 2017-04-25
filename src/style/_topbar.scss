@@ -2,7 +2,7 @@
 {
     padding: 8px 30px;
 
-    background-color: #89bf04;
+    background-color: #5C666F;
     .topbar-wrapper
     {
         display: flex;
@@ -38,8 +38,8 @@
             min-width: 350px;
             margin: 0;
 
-            border: 2px solid #547f00;
-            border-radius: 4px 0 0 4px;
+            // border: 2px solid #547f00;
+            border-radius: 3px 0 0 3px;
             outline: none;
         }
 
@@ -51,7 +51,7 @@
             padding: 4px 40px;
 
             border: none;
-            border-radius: 0 4px 4px 0;
+            border-radius: 0 3px 3px 0;
             background: #547f00;
 
             @include text_headline(#fff);

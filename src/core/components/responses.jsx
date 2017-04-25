@@ -23,65 +23,59 @@ export default class Responses extends React.Component {
     produces: fromJS(["application/json"])
   }
 
-  onChangeProducesWrapper = ( val ) => this.props.specActions.changeProducesValue(this.props.pathMethod, val)
+  onChangeProducesWrapper = (val) => this.props.specActions.changeProducesValue(this.props.pathMethod, val)
 
   render() {
     let { responses, request, tryItOutResponse, getComponent, specSelectors, fn, producesValue } = this.props
-    let defaultCode = defaultStatusCode( responses )
+    let defaultCode = defaultStatusCode(responses)
 
-    const ContentType = getComponent( "contentType" )
-    const LiveResponse = getComponent( "liveResponse" )
-    const Response = getComponent( "response" )
+    const ContentType = getComponent("contentType")
+    const LiveResponse = getComponent("liveResponse")
+    const Response = getComponent("response")
 
     let produces = this.props.produces && this.props.produces.size ? this.props.produces : Responses.defaultProps.produces
 
     return (
-      <div className="responses-wrapper">
+      <div className="responses-wrapper row">
         <div className="opblock-section-header">
-          <h4>Responses</h4>
-            <label>
-              <span>Response content type</span>
-              <ContentType value={producesValue}
-                         onChange={this.onChangeProducesWrapper}
-                         contentTypes={produces}
-                         className="execute-content-type"/>
-                     </label>
+          <h4>Responses sample</h4>
+          <label>
+            <span>Response content type</span>
+            <ContentType value={producesValue}
+              onChange={this.onChangeProducesWrapper}
+              contentTypes={produces}
+              className="execute-content-type" />
+          </label>
         </div>
         <div className="responses-inner">
           {
             !tryItOutResponse ? null
-                              : <div>
-                                  <LiveResponse request={ request }
-                                                response={ tryItOutResponse }
-                                                getComponent={ getComponent } />
-                                  <h4>Responses</h4>
-                                </div>
+              : <div>
+                <LiveResponse request={request}
+                  response={tryItOutResponse}
+                  getComponent={getComponent} />
+                <h4>Responses</h4>
+              </div>
 
           }
 
           <table className="responses-table">
-            <thead>
-              <tr className="responses-header">
-                <td className="col col_header response-col_status">Code</td>
-                <td className="col col_header response-col_description">Description</td>
-              </tr>
-            </thead>
             <tbody>
               {
-                responses.entrySeq().map( ([code, response]) => {
+                responses.entrySeq().map(([code, response]) => {
 
                   let className = tryItOutResponse && tryItOutResponse.get("status") == code ? "response_current" : ""
                   return (
-                    <Response key={ code }
-                              isDefault={defaultCode === code}
-                              fn={fn}
-                              className={ className }
-                              code={ code }
-                              response={ response }
-                              specSelectors={ specSelectors }
-                              contentType={ producesValue }
-                              getComponent={ getComponent }/>
-                    )
+                    <Response key={code}
+                      isDefault={defaultCode === code}
+                      fn={fn}
+                      className={className}
+                      code={code}
+                      response={response}
+                      specSelectors={specSelectors}
+                      contentType={producesValue}
+                      getComponent={getComponent} />
+                  )
                 }).toArray()
               }
             </tbody>

@@ -50,11 +50,6 @@ table
 
                 vertical-align: top;
 
-                &:first-of-type
-                {
-                    width: 20%;
-                    padding: 10px 0;
-                }
             }
         }
     }
@@ -85,7 +80,7 @@ table
 {
     p
     {
-        font-size: 14px;
+        font-size: 12px;
 
         margin: 0;
 
@@ -101,7 +96,7 @@ table
 
 .parameter__name
 {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: normal;
 
     @include text_headline();
@@ -138,12 +133,13 @@ table
 .table-container
 {
     padding: 20px;
+    background-color: #F0F0F2;
+    border-radius: 3px;
 }
 
 .parameters-col_name
 {
-    width: 25%;
-}
+    width: 20%}
 
 .response-col_status
 {

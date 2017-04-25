@@ -43,16 +43,10 @@ export default class LiveResponse extends React.Component {
         { request && <Curl request={ request }/> }
         <h4>Server response</h4>
         <table className="responses-table">
-          <thead>
-          <tr className="responses-header">
-            <td className="col col_header response-col_status">Code</td>
-            <td className="col col_header response-col_description">Details</td>
-          </tr>
-          </thead>
           <tbody>
             <tr className="response">
               <td className="col response-col_status">
-                { status }
+                <div><span>{ status }</span></div>
                 {
                   !notDocumented ? null :
                   <div className="response-undocumented">

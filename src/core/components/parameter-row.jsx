@@ -21,7 +21,7 @@ export default class ParameterRow extends Component {
     let defaultValue = param.get("default")
     let parameter = specSelectors.getParameter(pathMethod, param.get("name"))
     let value = parameter ? parameter.get("value") : ""
-    if ( defaultValue !== undefined && value === undefined ) {
+    if (defaultValue !== undefined && value === undefined) {
       this.onChangeWrapper(defaultValue)
     }
   }
@@ -31,7 +31,7 @@ export default class ParameterRow extends Component {
     let defaultValue = param.get("default")
     let parameter = specSelectors.getParameter(pathMethod, param.get("name"))
     let value = parameter ? parameter.get("value") : ""
-    if ( defaultValue !== undefined && value === undefined ) {
+    if (defaultValue !== undefined && value === undefined) {
       this.onChangeWrapper(defaultValue)
     }
   }
@@ -42,7 +42,7 @@ export default class ParameterRow extends Component {
   }
 
   render() {
-    let {param, onChange, getComponent, isExecute, fn, onChangeConsumes, specSelectors, pathMethod} = this.props
+    let { param, onChange, getComponent, isExecute, fn, onChangeConsumes, specSelectors, pathMethod } = this.props
 
     // const onChangeWrapper = (value) => onChange(param, value)
     const JsonSchemaForm = getComponent("JsonSchemaForm")
@@ -50,15 +50,15 @@ export default class ParameterRow extends Component {
     let inType = param.get("in")
     let bodyParam = inType !== "body" ? null
       : <ParamBody getComponent={getComponent}
-                   fn={fn}
-                   param={param}
-                   consumes={ specSelectors.operationConsumes(pathMethod) }
-                   consumesValue={ specSelectors.contentTypeValues(pathMethod).get("requestContentType") }
-                   onChange={onChange}
-                   onChangeConsumes={onChangeConsumes}
-                   isExecute={ isExecute }
-                   specSelectors={ specSelectors }
-                   pathMethod={ pathMethod }
+        fn={fn}
+        param={param}
+        consumes={specSelectors.operationConsumes(pathMethod)}
+        consumesValue={specSelectors.contentTypeValues(pathMethod).get("requestContentType")}
+        onChange={onChange}
+        onChangeConsumes={onChangeConsumes}
+        isExecute={isExecute}
+        specSelectors={specSelectors}
+        pathMethod={pathMethod}
       />
 
     const ModelExample = getComponent("modelExample")
@@ -77,35 +77,35 @@ export default class ParameterRow extends Component {
       <tr>
         <td className="col parameters-col_name">
           <div className={required ? "parameter__name required" : "parameter__name"}>
-            { param.get("name") }
-            { !required ? null : <span style={{color: "red"}}>&nbsp;*</span> }
+            {param.get("name")}
+            {!required ? null : <span style={{ color: "red" }}>&nbsp;*</span>}
           </div>
-          <div className="parаmeter__type">{ param.get("type") } { itemType && `[${itemType}]` }</div>
-          <div className="parameter__in">({ param.get("in") })</div>
+          <div className="parаmeter__type">{param.get("type")} {itemType && `[${itemType}]`}</div>
+          <div className="parameter__in">({param.get("in")})</div>
         </td>
 
         <td className="col parameters-col_description">
-          <Markdown options={{html: true, typographer: true, linkify: true, linkTarget: "_blank"}}
-                    source={ param.get("description") }/>
+
+          <Markdown options={{ html: true, typographer: true, linkify: true, linkTarget: "_blank" }}
+            source={param.get("description")} />
           {(isFormData && !isFormDataSupported) && <div>Error: your browser does not support FormData</div>}
 
-          { bodyParam || !isExecute ? null
+          {bodyParam || !isExecute ? null
             : <JsonSchemaForm fn={fn}
-                              getComponent={getComponent}
-                              value={ value }
-                              required={ required }
-                              description={param.get("description") ? `${param.get("name")} - ${param.get("description")}` : `${param.get("name")}`}
-                              onChange={ this.onChangeWrapper }
-                              schema={ param }/>
+              getComponent={getComponent}
+              value={value}
+              required={required}
+              description={param.get("description") ? `${param.get("name")} - ${param.get("description")}` : `${param.get("name")}`}
+              onChange={this.onChangeWrapper}
+              schema={param} />
           }
 
-
           {
-            bodyParam && schema ? <ModelExample getComponent={ getComponent }
-                                                isExecute={ isExecute }
-                                                specSelectors={ specSelectors }
-                                                schema={ schema }
-                                                example={ bodyParam }/>
+            bodyParam && schema ? <ModelExample getComponent={getComponent}
+              isExecute={isExecute}
+              specSelectors={specSelectors}
+              schema={schema}
+              example={bodyParam} />
               : null
           }
 

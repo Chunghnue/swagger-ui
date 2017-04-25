@@ -39,10 +39,11 @@ export default class SideBar extends React.Component {
     let showSummary = layoutSelectors.showSummary()
 
     return (
-      <div>
-        <ul className="side-bar">
+      <div className="row side-bar">
+        <h5>API Reference</h5>
+        <ul>
           {
-            taggedOps.map( (tagObj, tag) => {
+            taggedOps.map((tagObj, tag) => {
               let operations = tagObj.get("operations")
               let tagDescription = tagObj.getIn(["tagDetails", "description"], null)
 
@@ -50,24 +51,24 @@ export default class SideBar extends React.Component {
               let showTag = layoutSelectors.isShown(isShownKey, true)
               return (
                 <li key={tag}>
-                  <Link href={"#" + tag} to={tag} spy={true} smooth={true} duration={500}>{tag}</Link>
-                  <ul>
+                  <Link className="tag-name" href={"#" + tag} to={tag} spy={true} smooth={true} duration={500}>{tag}</Link>
+                  <ul className="sidebar-tag">
                     {
                       operations.map(op => {
                         let operation = op.toObject().operation
                         let summary = operation.get("summary")
                         return (
-                          <li key={op.toObject().id}><Link href={"#"+op.toObject().id} to={op.toObject().id} spy={true} smooth={true} duration={500} >{ summary }</Link></li>
+                          <li key={op.toObject().id}><Link href={"#" + op.toObject().id} to={op.toObject().id} spy={true} smooth={true} duration={500} >{summary}</Link></li>
                         )
                       })
                     }
                   </ul>
                 </li>
-                )
+              )
             }).toArray()
           }
 
-          { taggedOps.size < 1 ? <h3> No operations defined in spec! </h3> : null }
+          {taggedOps.size < 1 ? <h3> No operations defined in spec! </h3> : null}
         </ul>
       </div>
     )
