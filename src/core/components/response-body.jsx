@@ -87,7 +87,9 @@ export default class ResponseBody extends React.Component {
     }
 
     return ( !bodyEl ? null : <div>
-        <h5>Response body</h5>
+        <div className="opblock-section-header">
+          <h4>Response body</h4>
+        </div>
         { bodyEl }
       </div>
     )

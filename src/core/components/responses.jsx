@@ -30,7 +30,6 @@ export default class Responses extends React.Component {
     let defaultCode = defaultStatusCode(responses)
 
     const ContentType = getComponent("contentType")
-    const LiveResponse = getComponent("liveResponse")
     const Response = getComponent("response")
 
     let produces = this.props.produces && this.props.produces.size ? this.props.produces : Responses.defaultProps.produces
@@ -38,7 +37,7 @@ export default class Responses extends React.Component {
     return (
       <div className="responses-wrapper row">
         <div className="opblock-section-header">
-          <h4>Responses sample</h4>
+          <h4>Responses</h4>
           <label>
             <span>Response content type</span>
             <ContentType value={producesValue}
@@ -48,16 +47,6 @@ export default class Responses extends React.Component {
           </label>
         </div>
         <div className="responses-inner">
-          {
-            !tryItOutResponse ? null
-              : <div>
-                <LiveResponse request={request}
-                  response={tryItOutResponse}
-                  getComponent={getComponent} />
-                <h4>Responses</h4>
-              </div>
-
-          }
 
           <table className="responses-table">
             <tbody>

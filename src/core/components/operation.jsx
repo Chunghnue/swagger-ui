@@ -148,6 +148,7 @@ export default class Operation extends React.Component {
     let { tryItOutEnabled } = this.state
     let shown = this.isShown()
     let onChangeKey = [path, method] // Used to add values to _this_ operation ( indexed by path and method )
+    const LiveResponse = getComponent("liveResponse")
     return (
       <Element name={id.replace(/[\/\-\{\}]/g, '_')} className={deprecated ? "opblock opblock-deprecated" : shown ? `opblock opblock-${method} is-open` : `opblock opblock-${method}`} >
         <div>
@@ -233,7 +234,17 @@ export default class Operation extends React.Component {
                 </div>
 
                 {this.state.executeInProgress ? <div className="loading-container"><div className="loading"></div></div> : null}
+
+                {
+                  !response ? null
+                    : <div>
+                      <LiveResponse request={request}
+                        response={response}
+                        getComponent={getComponent} />
+                    </div>
+                }
               </div>
+
             </Col>
             <Col desktop={5} className="res-col">
               {!responses ? null :

@@ -20,7 +20,7 @@ export default class HighlightCode extends Component {
   render () {
     let { value, className } = this.props
     className = className || ""
-    return <SyntaxHighlighter style={monokai}>{ value }</SyntaxHighlighter>
+    return <SyntaxHighlighter className="response-col_description" style={monokai}>{ value }</SyntaxHighlighter>
     // return <pre ref="el" className={className + " microlight"}>{ value }</pre>
   }
 }
