@@ -31,6 +31,7 @@ export default class BaseLayout extends React.Component {
     let Row = getComponent("Row")
     let Col = getComponent("Col")
     let Errors = getComponent("errors", true)
+    const OnlineValidatorBadge = getComponent("onlineValidatorBadge", true)
     const Schemes = getComponent("schemes")
 
     const isSpecEmpty = !specSelectors.specStr()
@@ -57,6 +58,7 @@ export default class BaseLayout extends React.Component {
                 {schemes && schemes.size ? (
                   <Schemes schemes={schemes} specActions={specActions} />
                 ) : null}
+                <OnlineValidatorBadge />
                 {securityDefinitions ? (
                   <AuthorizeBtn />
                 ) : null}
