@@ -533,21 +533,21 @@ body
 
 .opblock-body pre
 {
-    font-size: 12px;
+    // font-size: 12px;
 
-    margin: 0;
-    padding: 12px;
+    // margin: 0;
+    // padding: 12px;
 
-    white-space: pre-wrap;
+    // white-space: pre-wrap;
 
-    border-radius: 4px;
-    background: #41444e;
+    // border-radius: 4px;
+    // background: #41444e;
 
-    @include text_code(#fff);
-    span
-    {
-        color: #fff !important;
-    }
+    // @include text_code(#fff);
+    // span
+    // {
+    //     color: #fff !important;
+    // }
 }
 
 .scheme-container
@@ -726,3 +726,5 @@ body
     }
   }
 }
+
+// @import "./node_modules/react-codemirror/lib/codemirror.css"

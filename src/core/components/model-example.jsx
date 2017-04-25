@@ -27,7 +27,7 @@ export default class ModelExample extends React.Component {
   }
 
   render() {
-    let { getComponent, specSelectors, schema, example, isExecute } = this.props
+    let { getComponent, specSelectors, schema, example } = this.props
     const Model = getComponent("model")
 
     return <div>
