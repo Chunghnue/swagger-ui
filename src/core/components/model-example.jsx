@@ -18,8 +18,8 @@ export default class ModelExample extends React.Component {
     }
   }
 
-  activeTab =( e ) => {
-    let { target : { dataset : { name } } } = e
+  activeTab = (e) => {
+    let { target: { dataset: { name } } } = e
 
     this.setState({
       activeTab: name
@@ -32,24 +32,22 @@ export default class ModelExample extends React.Component {
 
     return <div>
       <ul className="tab">
-        <li className={ "tabitem" + ( isExecute || this.state.activeTab === "example" ? " active" : "") }>
-          <a className="tablinks" data-name="example" onClick={ this.activeTab }>Example Value</a>
+        <li className={"tabitem" + (this.state.activeTab === "example" ? " active" : "")}>
+          <a className="tablinks" data-name="example" onClick={this.activeTab}>Example Value</a>
         </li>
-        <li className={ "tabitem" + ( !isExecute && this.state.activeTab === "model" ? " active" : "") }>
-          <a className={ "tablinks" + ( isExecute ? " inactive" : "" )} data-name="model" onClick={ this.activeTab }>Model</a>
+        <li className={"tabitem" + (this.state.activeTab === "model" ? " active" : "")}>
+          <a className={"tablinks"} data-name="model" onClick={this.activeTab}>Model</a>
         </li>
       </ul>
       <div>
         {
-          (isExecute || this.state.activeTab === "example") && example
+          (this.state.activeTab === "example") && example
         }
         {
-          !isExecute && this.state.activeTab === "model" && <Model schema={ schema }
-                                                     getComponent={ getComponent }
-                                                     specSelectors={ specSelectors }
-                                                     expandDepth={ 1 } />
-
-
+          this.state.activeTab === "model" && <Model schema={schema}
+            getComponent={getComponent}
+            specSelectors={specSelectors}
+            expandDepth={1} />
         }
       </div>
     </div>

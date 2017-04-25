@@ -526,6 +526,11 @@ body
   }
 }
 
+.tab li:first-of-type
+{
+  padding-right: 13px;
+}
+
 .opblock-body pre
 {
     font-size: 12px;
@@ -692,7 +697,7 @@ body
     padding-left: 30px;
     padding-top: 20px;
   }
-  
+
   ul
   {
     padding: 0;
