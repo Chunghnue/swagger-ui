@@ -152,7 +152,7 @@ export default class Operation extends React.Component {
     return (
       <Element name={id.replace(/[\/\-\{\}]/g, '_')} className={deprecated ? "opblock opblock-deprecated" : shown ? `opblock opblock-${method} is-open` : `opblock opblock-${method}`} >
         <div>
-          <Row>
+          <Row className="row-eq-height">
             <Col desktop={7}>
               <div className={`opblock-summary opblock-summary-${method}`}>
                 {!showSummary ? null :

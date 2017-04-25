@@ -20,7 +20,7 @@ body
 {
     width: 100%;
     // max-width: 1460px;
-    margin: 0 auto;
+    margin: 10px auto;
     // padding: 0 20px;
 }
 
@@ -192,8 +192,7 @@ body
         }
     }
     .opblock-summary-method-path {
-      display: flex;
-
+      display: inline;
       .opblock-summary-method
       {
           font-size: 11px;
@@ -201,14 +200,14 @@ body
 
           // min-width: 80px;
           height: 20px;
-          padding: 2px 10px;
+          padding: 5px 10px;
 
           text-align: center;
 
           border-radius: 20px;
           background: #000;
           text-shadow: 0 1px 0 rgba(#000,.1);
-
+          display: inline;
           @include text_headline(#ffffff);
       }
 
@@ -222,6 +221,7 @@ body
           padding: 0 10px;
 
           // @include text_code();
+          display: inline;
           align-items: center;
 
           .view-line-link
@@ -727,4 +727,9 @@ body
   }
 }
 
-// @import "./node_modules/react-codemirror/lib/codemirror.css"
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+}

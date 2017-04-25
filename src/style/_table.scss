@@ -31,7 +31,7 @@ table
     {
         td
         {
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 300;
 
             vertical-align: middle;
@@ -61,10 +61,10 @@ table
             th,
             td
             {
-                font-size: 12px;
+                font-size: 14px;
                 font-weight: bold;
 
-                padding: 12px 0;
+                padding: 14px 0;
 
                 text-align: left;
 
@@ -80,7 +80,7 @@ table
 {
     p
     {
-        font-size: 12px;
+        font-size: 14px;
 
         margin: 0;
 
@@ -123,7 +123,7 @@ table
 
 .parameter__in
 {
-    font-size: 12px;
+    font-size: 14px;
     font-style: italic;
 
     @include text_code(#888);

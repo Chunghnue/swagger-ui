@@ -1,7 +1,7 @@
 select
 {
     font-family: Avenir Next,avenir-next-web,Avenir,Helvetica Neue,Hevetica,sans-serif;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
     border: 1px solid #41444e;
 
@@ -31,7 +31,7 @@ select
 
 label
 {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
 
     margin: 0 0 5px 0;
@@ -45,7 +45,7 @@ input[type=password],
 input[type=search],
 input[type=email]
 {
-    font-size: 12px;
+    font-size: 14px;
     min-width: 100px;
     margin: 5px 0;
     padding: 8px 10px;
@@ -93,7 +93,7 @@ input[type=email]
 
 textarea
 {
-    font-size: 12px;
+    font-size: 14px;
 
     width: 100%;
     min-height: 280px;
@@ -113,7 +113,7 @@ textarea
 
     &.curl
     {
-        font-size: 12px;
+        font-size: 14px;
 
         min-height: 100px;
         margin: 0;
