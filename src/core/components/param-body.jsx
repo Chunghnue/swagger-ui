@@ -115,7 +115,6 @@ export default class ParamBody extends Component {
     const TextArea = getComponent("TextArea")
     const HighlightCode = getComponent("highlightCode")
     const ContentType = getComponent("contentType")
-    console.log('ContentType', ContentType);
     // for domains where specSelectors not passed
     let parameter = specSelectors ? specSelectors.getParameter(pathMethod, param.get("name")) : param
     let errors = parameter.get("errors", List())

@@ -1,7 +1,9 @@
 import React, { PropTypes } from "react"
 import Scroll from "react-scroll"
+import _ from "lodash"
 
 const Link = Scroll.Link
+const scroll = Scroll.scroller
 
 export default class SideBar extends React.Component {
 
@@ -18,6 +20,15 @@ export default class SideBar extends React.Component {
   static defaultProps = {
 
   };
+
+  componentDidMount() {
+    setTimeout(function() {
+      scroll.scrollTo(window.location.hash.substr(1), {
+        duration: 500,
+        smooth: true
+      })
+    }, 2000)
+  }
 
   render() {
     let {
@@ -49,6 +60,11 @@ export default class SideBar extends React.Component {
 
               let isShownKey = ["operations-tag", tag]
               let showTag = layoutSelectors.isShown(isShownKey, true)
+              const onSetActive = (hash) => {
+                if (hash && location.hash !== '#' + hash) {
+                  location.hash = hash
+                }
+              }
               return (
                 <li key={tag}>
                   <Link className="tag-name" href={"#" + tag} to={tag} spy={true} smooth={true} duration={500}>{tag}</Link>
@@ -57,8 +73,10 @@ export default class SideBar extends React.Component {
                       operations.map(op => {
                         let operation = op.toObject().operation
                         let summary = operation.get("summary")
+                        let to = op.toObject().id.replace(/[\/\-\{\}]/g, '_')
+                        
                         return (
-                          <li key={op.toObject().id}><Link href={"#" + op.toObject().id} to={op.toObject().id} spy={true} smooth={true} duration={500} >{summary}</Link></li>
+                          <li key={to}><Link href={"#" + to} onSetActive={() => onSetActive(to)} to={to} spy={true} smooth={true} duration={500} >{summary}</Link></li>
                         )
                       })
                     }

@@ -149,7 +149,7 @@ export default class Operation extends React.Component {
     let shown = this.isShown()
     let onChangeKey = [path, method] // Used to add values to _this_ operation ( indexed by path and method )
     return (
-      <Element name={id} className={deprecated ? "opblock opblock-deprecated" : shown ? `opblock opblock-${method} is-open` : `opblock opblock-${method}`} >
+      <Element name={id.replace(/[\/\-\{\}]/g, '_')} className={deprecated ? "opblock opblock-deprecated" : shown ? `opblock opblock-${method} is-open` : `opblock opblock-${method}`} >
         <div>
           <Row>
             <Col desktop={7}>
