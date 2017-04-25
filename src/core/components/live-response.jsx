@@ -3,7 +3,7 @@ import ImPropTypes from "react-immutable-proptypes"
 
 const Headers = ({ headers }) => {
   return (
-    <div>
+    <div className="opblock-response-headers">
       <div className="opblock-section-header">
         <h4>Response headers</h4>
       </div>
@@ -46,7 +46,7 @@ export default class LiveResponse extends React.Component {
         <div className="opblock-section-header">
           <h4 className="opblock-title">Server response</h4>
         </div>
-        <div><span>{status}</span></div>
+        <div className="opblock-response-status"><span>{status}</span></div>
         {
           !notDocumented ? null :
             <div className="response-undocumented">

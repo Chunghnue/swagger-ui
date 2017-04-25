@@ -2,18 +2,13 @@ import React, { Component, PropTypes } from "react"
 import shallowCompare from "react-addons-shallow-compare"
 import { fromJS, List } from "immutable"
 import { getSampleSchema } from "core/utils"
-import CodeMirror from "react-codemirror"
-require('codemirror/lib/codemirror.css')
-require('codemirror/theme/eclipse.css')
-require('codemirror/mode/javascript/javascript')
-require('codemirror/mode/xml/xml')
-require('codemirror/addon/lint/lint')
-require('codemirror/addon/edit/closebrackets')
-require('codemirror/addon/edit/matchbrackets')
-require('codemirror/addon/edit/trailingspace')
-require('codemirror/addon/edit/continuelist')
-// require('jsonlint')
-// require('codemirror/addon/lint/json-lint')
+import brace from 'brace'
+import AceEditor from 'react-ace'
+
+import 'brace/mode/json'
+import 'brace/mode/xml'
+import 'brace/theme/github'
+
 const NOOP = Function.prototype
 
 export default class ParamBody extends Component {
@@ -42,7 +37,7 @@ export default class ParamBody extends Component {
     super(props, context)
 
     this.state = {
-      isEditBox: false,
+      isEditBox: true,
       value: ""
     }
 
@@ -86,8 +81,8 @@ export default class ParamBody extends Component {
     return getSampleSchema(schema, xml)
   }
 
-  onChange = (value, { isEditBox, isXml }) => {
-    this.setState({ value, isEditBox })
+  onChange = (value, { isXml }) => {
+    this.setState({ value })
     this._onChange(value, isXml)
   }
 
@@ -95,7 +90,7 @@ export default class ParamBody extends Component {
 
   handleOnChange = val => {
     let { consumesValue } = this.props
-    this.onChange(val.trim(), { isXml: /xml/i.test(consumesValue) })
+    this.onChange(val.trim(), { isEditBox: true, isXml: /xml/i.test(consumesValue) })
   }
 
   toggleIsEditBox = () => this.setState(state => ({ isEditBox: !state.isEditBox }))
@@ -123,24 +118,33 @@ export default class ParamBody extends Component {
     let isXml = /xml/i.test(consumesValue)
 
     let { value, isEditBox } = this.state
+    let mode = isXml ? "xml" : "json"
     let options = {
-      mode: isXml ? "xml" : "application/json",
-      lineNumbers: true,
-      tabMode: "indent",
-      gutters: ["CodeMirror-lint-markers"],
-      lint: true,
-      viewportMargin: Infinity,
-      autoRefresh: true,
-      autoCloseBrackets: true,
-      matchBrackets: true,
-      theme: 'eclipse'
+      autoScrollEditorIntoView: true,
+      highlightGutterLine: true,
+      lineHeight: 2
+    }
+    let styles = {
+      lineHeight: 1.5
     }
     return (
       <div className="body-param">
         {
           isEditBox && isExecute
             ? // <TextArea className={"body-param__text" + (errors.count() ? " invalid" : "")} value={value} onChange={this.handleOnChange} />
-            <CodeMirror value={value} onChange={this.handleOnChange} options={options} />
+            <AceEditor 
+            value={value} 
+            onChange={this.handleOnChange} 
+            mode={mode}
+            theme="github"
+            width="auto"
+            height={200}
+            fontSize={14}
+            useSoftTabs={true}
+            tabSize={2}
+            lineHeight={2}
+            style={styles} 
+            editorProps={options} />
             : (value && <HighlightCode className="body-param__example"
               value={value} />)
         }

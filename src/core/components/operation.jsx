@@ -237,7 +237,7 @@ export default class Operation extends React.Component {
 
                 {
                   !response ? null
-                    : <div>
+                    : <div className="opblock-operation-response">
                       <LiveResponse request={request}
                         response={response}
                         getComponent={getComponent} />

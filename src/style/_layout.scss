@@ -118,9 +118,9 @@ body
 {
     font-size: 12px;
 
-    padding: 5px 0;
+    // padding: 5px 0;
 
-    @include text_code();
+    // @include text_code();
 }
 
 .view-line-link
@@ -382,16 +382,16 @@ body
 .opblock-description-wrapper,
 .opblock-title_normal
 {
-    font-size: 12px;
+    font-size: 14px;
 
-    margin: 0 0 5px 0;
-    padding: 15px 20px;
+    // margin: 0 0 5px 0;
+    padding: 5px 15px;
 
     @include text_body();
 
     h4
     {
-        font-size: 12px;
+        font-size: 14px;
 
         margin: 0 0 5px 0;
 
@@ -725,6 +725,41 @@ body
       background: #F3F3F4;
     }
   }
+}
+
+.opblock-response-status
+{
+    font-size: 14px;
+    margin: 0;
+    padding: 5px;
+
+    resize: none;
+
+    border-radius: 2px;
+    background: #F8F8F8;
+
+}
+
+.opblock-response-headers
+{
+    pre
+    {
+        font-size: 14px;
+        margin: 0;
+        padding: 5px;
+
+        border-radius: 2px;
+        background: #F8F8F8;
+
+        @include text_code();
+    }
+}
+
+.opblock-operation-response
+{
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 3px;
+    padding: 0 15px;
 }
 
 .row-eq-height {

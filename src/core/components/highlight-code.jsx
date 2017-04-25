@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from "react"
 // import { highlight } from "core/utils"
 import SyntaxHighlighter from "react-syntax-highlighter"
-import { monokai } from "react-syntax-highlighter/dist/styles"
+import { github } from "react-syntax-highlighter/dist/styles"
 
 export default class HighlightCode extends Component {
   static propTypes = {
@@ -20,7 +20,7 @@ export default class HighlightCode extends Component {
   render () {
     let { value, className } = this.props
     className = className || ""
-    return <SyntaxHighlighter className="response-col_description" style={monokai}>{ value }</SyntaxHighlighter>
+    return <SyntaxHighlighter className="response-col_description" style={github}>{ value }</SyntaxHighlighter>
     // return <pre ref="el" className={className + " microlight"}>{ value }</pre>
   }
 }
