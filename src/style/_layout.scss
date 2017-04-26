@@ -29,6 +29,7 @@ body
     display: flex;
     flex-direction: column;
     background: #ffffff;
+    border-top: 1px solid rgba(#000, .08);
     // padding-left: 20px;
     &.is-open
     {
@@ -48,7 +49,8 @@ body
     // display: flex;
 
     padding: 10px 20px 10px 10px;
-
+    margin: 0;
+    background: #F0F0F2;
     cursor: pointer;
     transition: all .2s;
 
@@ -84,8 +86,6 @@ body
 .opblock-tag
 {
     font-size: 24px;
-
-    margin: 0 0 5px 0;
 
     @include text_headline();
     text-transform: uppercase;
@@ -694,8 +694,10 @@ body
   .tag-name
   {
     text-transform: capitalize;
-    padding-left: 30px;
-    padding-top: 20px;
+    padding: 20px;
+    cursor: pointer;
+    border-top: 1px solid rgba(#000,.08);
+    font-size: 16px;
   }
 
   ul
@@ -722,7 +724,7 @@ body
     {
       padding: 9px 9px 9px 40px;
       border-top: 1px solid #e8eaeb;
-      background: #F3F3F4;
+      background: #F0F0F2;
     }
   }
 }

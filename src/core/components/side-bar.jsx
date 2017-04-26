@@ -1,6 +1,5 @@
 import React, { PropTypes } from "react"
 import Scroll from "react-scroll"
-import _ from "lodash"
 
 const Link = Scroll.Link
 const scroll = Scroll.scroller
@@ -44,7 +43,7 @@ export default class SideBar extends React.Component {
 
     let taggedOps = specSelectors.taggedOperations()
 
-    const Operation = getComponent("operation")
+    // const Operation = getComponent("operation")
     const Collapse = getComponent("Collapse")
 
     let showSummary = layoutSelectors.showSummary()
@@ -66,21 +65,23 @@ export default class SideBar extends React.Component {
                 }
               }
               return (
-                <li key={tag}>
-                  <Link className="tag-name" href={"#" + tag} to={tag} spy={true} smooth={true} duration={500}>{tag}</Link>
-                  <ul className="sidebar-tag">
-                    {
-                      operations.map(op => {
-                        let operation = op.toObject().operation
-                        let summary = operation.get("summary")
-                        let to = op.toObject().id.replace(/[\/\-\{\}]/g, '_')
-                        
-                        return (
-                          <li key={to}><Link href={"#" + to} onSetActive={() => onSetActive(to)} to={to} spy={true} smooth={true} duration={500} >{summary}</Link></li>
-                        )
-                      })
-                    }
-                  </ul>
+                <li key={"operation-" + tag}>
+                  <a onClick={() => layoutActions.show(isShownKey, !showTag)} className="tag-name">{tag}</a>
+                  <Collapse isOpened={showTag}>
+                    <ul className="sidebar-tag">
+                      {
+                        operations.map(op => {
+                          let operation = op.toObject().operation
+                          let summary = operation.get("summary")
+                          let to = op.toObject().id.replace(/[\/\-\{\}]/g, '_')
+
+                          return (
+                            <li key={to}><Link href={"#" + to} onSetActive={() => onSetActive(to)} to={to} spy={true} smooth={true} duration={500} >{summary}</Link></li>
+                          )
+                        })
+                      }
+                    </ul>
+                  </Collapse>
                 </li>
               )
             }).toArray()
