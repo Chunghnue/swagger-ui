@@ -15,8 +15,6 @@ export default class AuthorizeBtn extends React.Component {
   render() {
     let { authSelectors, getComponent } = this.props
     //must be moved out of button component
-    const AuthorizationPopup = getComponent("authorizationPopup", true)
-    let showPopup = !!authSelectors.shownDefinitions()
     let isAuthorized = !!authSelectors.authorized().size
 
     return (
@@ -27,7 +25,6 @@ export default class AuthorizeBtn extends React.Component {
             <use xlinkHref={ isAuthorized ? "#locked" : "#unlocked" } />
           </svg>
         </button>
-      { showPopup && <AuthorizationPopup /> }
       </div>
     )
   }

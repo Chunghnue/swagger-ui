@@ -10,24 +10,23 @@ export default class BaseLayout extends React.Component {
     specSelectors: PropTypes.object.isRequired,
     layoutSelectors: PropTypes.object.isRequired,
     layoutActions: PropTypes.object.isRequired,
+    authSelectors: PropTypes.object.isRequired,
     getComponent: PropTypes.func.isRequired
   }
 
   render() {
-    let { specSelectors, specActions, getComponent } = this.props
+    let { specSelectors, specActions, getComponent, authSelectors } = this.props
 
     let info = specSelectors.info()
     let url = specSelectors.url()
     let basePath = specSelectors.basePath()
     let host = specSelectors.host()
-    let securityDefinitions = specSelectors.securityDefinitions()
     let externalDocs = specSelectors.externalDocs()
     let schemes = specSelectors.schemes()
 
     let Info = getComponent("info")
     let Operations = getComponent("operations", true)
     let Sidebar = getComponent("sidebar", true)
-    let AuthorizeBtn = getComponent("authorizeBtn", true)
     let Row = getComponent("Row")
     let Col = getComponent("Col")
     let Errors = getComponent("errors", true)
@@ -35,7 +34,8 @@ export default class BaseLayout extends React.Component {
     const Schemes = getComponent("schemes")
 
     const isSpecEmpty = !specSelectors.specStr()
-
+    const AuthorizationPopup = getComponent("authorizationPopup", true)
+    let showPopup = !!authSelectors.shownDefinitions()
     if (isSpecEmpty) {
       return <h4>No spec provided.</h4>
     }
@@ -52,19 +52,17 @@ export default class BaseLayout extends React.Component {
               ) : null}
             </Col>
           </div>
-          {schemes && schemes.size || securityDefinitions ? (
+          {schemes && schemes.size ? (
             <div className="scheme-container">
               <Col className="schemes wrapper" mobile={12}>
                 {schemes && schemes.size ? (
                   <Schemes schemes={schemes} specActions={specActions} />
                 ) : null}
                 <OnlineValidatorBadge />
-                {securityDefinitions ? (
-                  <AuthorizeBtn />
-                ) : null}
               </Col>
             </div>
           ) : null}
+          { showPopup && <AuthorizationPopup /> }
 
           <Row>
             <Col mobile={12} desktop={3} >

@@ -764,6 +764,13 @@ body
     padding: 0 15px;
 }
 
+.online-validator
+{
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+}
+
 .row-eq-height {
   display: -webkit-box;
   display: -webkit-flex;

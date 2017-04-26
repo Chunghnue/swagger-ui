@@ -47,9 +47,15 @@ export default class SideBar extends React.Component {
     const Collapse = getComponent("Collapse")
 
     let showSummary = layoutSelectors.showSummary()
+    let AuthorizeBtn = getComponent("authorizeBtn", true)
+    let securityDefinitions = specSelectors.securityDefinitions()
 
     return (
       <div className="row side-bar">
+        <h5>Security</h5>
+        {securityDefinitions ? (
+          <AuthorizeBtn />
+        ) : null}
         <h5>API Reference</h5>
         <ul>
           {
